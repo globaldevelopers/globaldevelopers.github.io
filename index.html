@@ -1,203 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Innovara Consulting</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovara Consulting</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script>
+window.addEventListener("scroll", function () {
+    const navbar = document.getElementById("navbar");
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    if (!navbar) return;
 
-body {
-    font-family: 'Inter', sans-serif;
-    background: #0a0a0f;
-    color: white;
-    overflow-x: hidden;
-}
+    if (window.scrollY > 50) {
+        navbar.classList.add("shrink");
+    } else {
+        navbar.classList.remove("shrink");
+    }
+});
+</script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* NAVBAR */
-nav {
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #222;
+        }
+
+        /* NAVBAR */
+        nav {
     position: fixed;
     width: 100%;
     top: 0;
-    padding: 20px 60px;
+    padding: 18px 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(10,10,15,0.6);
-    backdrop-filter: blur(10px);
+
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #eee;
+
     z-index: 100;
+    transition: all 0.35s ease;
 }
 
-nav img {
-    height: 50px;
-}
-
-nav a {
-    margin-left: 30px;
-    color: #ccc;
+/* LINKS */
+.nav-links a {
+    margin-left: 28px;
+    color: #555;
     text-decoration: none;
     font-weight: 500;
-}
-
-nav a:hover {
-    color: white;
-}
-
-/* HERO */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 0 60px;
-    position: relative;
-}
-
-.hero-content {
-    max-width: 700px;
-    z-index: 2;
-}
-
-.hero h1 {
-    font-size: 64px;
-    line-height: 1.2;
-    background: linear-gradient(90deg, #7b2ff7, #ff2d95);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-    margin: 20px 0;
-    font-size: 20px;
-    color: #bbb;
-}
-
-.cta {
-    margin-top: 30px;
-}
-
-.cta button {
-    padding: 14px 28px;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(90deg, #7b2ff7, #ff2d95);
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-right: 15px;
-}
-
-.cta button.secondary {
-    background: transparent;
-    border: 1px solid #555;
-}
-
-/* ANIMATED GRADIENT BACKGROUND */
-.gradient-bg {
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, #ff00cc, transparent);
-    top: 10%;
-    right: 10%;
-    filter: blur(120px);
-    animation: float 8s ease-in-out infinite;
-}
-
-.gradient-bg2 {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, #3333ff, transparent);
-    bottom: 10%;
-    left: 10%;
-    filter: blur(120px);
-    animation: float 10s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-40px); }
-}
-
-/* SECTION */
-.section {
-    padding: 100px 60px;
-}
-
-.section h2 {
-    font-size: 36px;
-    margin-bottom: 40px;
-}
-
-/* CARDS */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 30px;
-}
-
-.card {
-    background: rgba(255,255,255,0.05);
-    padding: 30px;
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
     transition: 0.3s;
 }
 
-.card:hover {
-    transform: translateY(-10px);
-    background: rgba(255,255,255,0.08);
+.nav-links a:hover {
+    color: #7b2ff7;
 }
 
-/* CLIENT STRIP */
-.clients {
-    display: flex;
-    justify-content: space-around;
-    opacity: 0.6;
-    margin-top: 40px;
+/* LOGO CONTROL (IMPORTANT) */
+.logo img {
+    height: 110px;              /* BIG logo */
+    transition: all 0.35s ease;
+    animation: logoFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 6px 14px rgba(255, 45, 149, 0.25));
 }
 
-/* FOOTER */
-footer {
-    padding: 60px;
-    background: #050507;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    color: #aaa;
+/* SHRINK STATE */
+#navbar.shrink {
+    padding: 8px 60px;         /* slim navbar */
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.06);
 }
 
-footer div {
-    margin-bottom: 20px;
+/* shrink logo instead of navbar */
+#navbar.shrink .logo img {
+    height: 70px;
+    transform: translateY(-2px);
 }
 
-/* SCROLL ANIMATION */
-.fade-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 0.8s;
+/* FLOAT ANIMATION */
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-4px) scale(1.02); }
 }
+        /* HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            position: relative;
+            background: linear-gradient(180deg, #ffffff 60%, #faf7ff);
+        }
 
-.fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-</style>
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            line-height: 1.2;
+            background: linear-gradient(90deg, #6a11cb, #ff2d95);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            margin: 20px 0;
+            font-size: 20px;
+            color: #555;
+        }
+
+        /* CTA */
+        .cta button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #6a11cb, #ff2d95);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .cta button.secondary {
+            background: white;
+            border: 1px solid #ddd;
+            color: #555;
+        }
+
+        /* SOFT GRADIENT BLOBS */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .blob1 {
+            width: 400px;
+            height: 400px;
+            background: #ff2d95;
+            top: 10%;
+            right: 5%;
+        }
+
+        .blob2 {
+            width: 350px;
+            height: 350px;
+            background: #6a11cb;
+            bottom: 10%;
+            left: 5%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        /* SECTION */
+        .section {
+            padding: 100px 60px;
+        }
+
+        .section h2 {
+            font-size: 34px;
+            margin-bottom: 40px;
+            color: #111;
+        }
+
+        /* CARDS */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(106, 17, 203, 0.1);
+        }
+
+        /* TRUST */
+        .clients {
+            display: flex;
+            justify-content: space-around;
+            color: #777;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, #f7f0ff, #ffe6f3);
+            border-radius: 20px;
+            margin: 60px;
+            padding: 60px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px;
+            background: #fafafa;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+
+        /* SCROLL ANIMATION */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 0.8s;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<nav>
-    <img src="logo.png" alt="logo">
-    <div>
+    <!-- NAV -->
+    <nav id="navbar">
+    <div class="logo">
+        <img src="logo.png" alt="Innovara Logo">
+    </div>
+
+    <div class="nav-links">
         <a href="#">Services</a>
         <a href="#">Solutions</a>
         <a href="#">About</a>
@@ -205,102 +263,102 @@ footer div {
     </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>Engineering Digital Growth Across UK & India</h1>
-        <p>
-            Innovara Consulting delivers world-class software development,
-            fintech solutions, and offshore capabilities for global enterprises.
-        </p>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Driving Innovation Across UK & India</h1>
+            <p>
+                Delivering world-class software development, fintech platforms,
+                and offshore capabilities tailored for modern businesses.
+            </p>
 
-        <div class="cta">
-            <button>Get Started</button>
-            <button class="secondary">Learn More</button>
-        </div>
-    </div>
-
-    <div class="gradient-bg"></div>
-    <div class="gradient-bg2"></div>
-</section>
-
-<!-- SERVICES -->
-<section class="section fade-up">
-    <h2>Our Capabilities</h2>
-
-    <div class="grid">
-        <div class="card">
-            <h3>Custom Software</h3>
-            <p>Enterprise-grade scalable systems built for growth.</p>
+            <div class="cta">
+                <button>Get Started</button>
+                <button class="secondary">Learn More</button>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Offshore Development</h3>
-            <p>High-performance engineering teams in India.</p>
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section fade-up">
+        <h2>Our Capabilities</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Custom Software</h3>
+                <p>Scalable, enterprise-grade solutions.</p>
+            </div>
+
+            <div class="card">
+                <h3>Offshore Development</h3>
+                <p>High-quality engineering teams in India.</p>
+            </div>
+
+            <div class="card">
+                <h3>FinTech Solutions</h3>
+                <p>Secure, compliant platforms.</p>
+            </div>
+
+            <div class="card">
+                <h3>Cloud & AI</h3>
+                <p>Modern architecture and automation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST -->
+    <section class="section fade-up">
+        <h2>Trusted by Businesses</h2>
+        <div class="clients">
+            <span>Enterprises</span>
+            <span>Startups</span>
+            <span>FinTech Firms</span>
+            <span>SMEs</span>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section fade-up">
+        <h2>Let’s Build Something Exceptional</h2>
+        <button style="margin-top:20px;padding:15px 30px;border:none;background:#ff2d95;border-radius:8px;color:white;">
+            Contact Us
+        </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <strong>Innovara Consulting</strong><br>
+            Your Partner in Innovation & Growth
         </div>
 
-        <div class="card">
-            <h3>FinTech Platforms</h3>
-            <p>Secure and compliant financial solutions.</p>
+        <div>
+            +44 7857 857922 (UK)<br>
+            +91 81417 83996 (India)
         </div>
 
-        <div class="card">
-            <h3>Cloud & AI</h3>
-            <p>Modern architectures powered by AI and cloud.</p>
+        <div>
+            info@innovaraconsulting.net<br>
+            www.innovaraconsulting.net
         </div>
-    </div>
-</section>
+    </footer>
 
-<!-- TRUST SECTION -->
-<section class="section fade-up">
-    <h2>Trusted by Global Businesses</h2>
-    <div class="clients">
-        <span>Enterprise Clients</span>
-        <span>Startups</span>
-        <span>FinTech Firms</span>
-        <span>SMEs</span>
-    </div>
-</section>
+    <script>
+        const elements = document.querySelectorAll('.fade-up');
 
-<!-- CTA -->
-<section class="section fade-up">
-    <h2>Let’s Build Something Exceptional</h2>
-    <button style="margin-top:20px;padding:15px 30px;border:none;background:#ff2d95;border-radius:8px;color:white;">
-        Contact Us
-    </button>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <div>
-        <strong>Innovara Consulting</strong><br>
-        Your Partner in Innovation & Growth
-    </div>
-
-    <div>
-        +44 7857 857922 (UK)<br>
-        +91 81417 83996 (India)
-    </div>
-
-    <div>
-        info@innovaraconsulting.net<br>
-        www.innovaraconsulting.net
-    </div>
-</footer>
-
-<script>
-// Scroll animation
-const elements = document.querySelectorAll('.fade-up');
-
-window.addEventListener('scroll', () => {
-    elements.forEach(el => {
-        const pos = el.getBoundingClientRect().top;
-        if (pos < window.innerHeight - 100) {
-            el.classList.add('visible');
-        }
-    });
-});
-</script>
+        window.addEventListener('scroll', () => {
+            elements.forEach(el => {
+                const pos = el.getBoundingClientRect().top;
+                if (pos < window.innerHeight - 100) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+    </script>
 
 </body>
+
 </html>
