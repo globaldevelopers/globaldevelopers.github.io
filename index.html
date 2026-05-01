@@ -1,158 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innovara Consulting Pvt Ltd</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovara Consulting</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #ffffff;
-            color: #333;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #ffffff;
+    overflow-x: hidden;
+}
 
-        header {
-            display: flex;
-            align-items: center;
-            padding: 20px 40px;
-        }
+/* HEADER */
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 2;
+    position: relative;
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
+.logo img {
+    height: 60px;
+    margin-right: 12px;
+}
 
-        .logo img {
-            height: 60px;
-            margin-right: 15px;
-        }
+.logo-text h1 {
+    margin: 0;
+    font-size: 26px;
+}
 
-        .logo-text h1 {
-            margin: 0;
-            font-size: 26px;
-            font-weight: 600;
-        }
+.logo-text span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #777;
+}
 
-        .logo-text span {
-            font-size: 12px;
-            letter-spacing: 2px;
-            color: #777;
-        }
+/* HERO */
+.hero {
+    padding: 80px 40px;
+    max-width: 800px;
+    animation: fadeUp 1.2s ease forwards;
+}
 
-        /* HERO */
-        .hero {
-            padding: 80px 40px;
-            text-align: left;
-            max-width: 800px;
-        }
+.hero h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #7b2ff7, #ff2d95);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        .hero h2 {
-            font-size: 42px;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #7b2ff7, #f107a3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.hero p {
+    font-size: 18px;
+    color: #555;
+}
 
-        .hero p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #555;
-        }
+/* 🌊 WAVE SHAPES */
+.wave {
+    position: absolute;
+    width: 500px;
+    height: 300px;
+    filter: blur(40px);
+    opacity: 0.7;
+    animation: floatWave 8s ease-in-out infinite;
+}
 
-        /* GRADIENT DECOR */
-        .top-right {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 350px;
-            height: 200px;
-            background: linear-gradient(135deg, #ff00cc, #3333ff);
-            border-bottom-left-radius: 150px;
-            opacity: 0.8;
-        }
+/* TOP RIGHT */
+.wave.top {
+    top: -80px;
+    right: -100px;
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
+    border-radius: 60% 40% 60% 40%;
+}
 
-        .bottom-left {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 350px;
-            height: 200px;
-            background: linear-gradient(135deg, #3333ff, #ff00cc);
-            border-top-right-radius: 150px;
-            opacity: 0.8;
-        }
+/* BOTTOM LEFT */
+.wave.bottom {
+    bottom: -80px;
+    left: -100px;
+    background: linear-gradient(135deg, #3333ff, #ff00cc);
+    border-radius: 40% 60% 40% 60%;
+    animation-delay: 2s;
+}
 
-        /* SERVICES */
-        .services {
-            padding: 60px 40px;
-        }
+/* FLOAT ANIMATION */
+@keyframes floatWave {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-20px) scale(1.05);
+    }
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+}
 
-        .services h3 {
-            font-size: 28px;
-            margin-bottom: 30px;
-        }
+/* FADE UP */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+/* SERVICES */
+.services {
+    padding: 60px 40px;
+}
 
-        .card {
-            padding: 20px;
-            border-radius: 12px;
-            background: #f9f9f9;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
 
-        /* FOOTER */
-        footer {
-            margin-top: 60px;
-            padding: 30px 40px;
-            border-top: 1px solid #eee;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            font-size: 14px;
-        }
+.card {
+    padding: 20px;
+    border-radius: 12px;
+    background: #f9f9f9;
+    transition: 0.3s;
+}
 
-        footer div {
-            flex: 1;
-            min-width: 200px;
-        }
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
 
-        .highlight {
-            color: #7b2ff7;
-            font-weight: 500;
-        }
+/* FOOTER */
+footer {
+    padding: 30px 40px;
+    border-top: 1px solid #eee;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 14px;
+}
 
-    </style>
+footer div {
+    flex: 1;
+    min-width: 200px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="top-right"></div>
+<div class="wave top"></div>
+<div class="wave bottom"></div>
 
 <header>
     <div class="logo">
-        <!-- Replace with actual logo -->
-        <img src="logo.png" alt="Innovara Logo">
-        <div class="logo-text">
-            <h1>Innovara Consulting</h1>
-            <span>PRIVATE LIMITED</span>
-        </div>
+        <img src="logo.png">
+    </div>
+    <div class="logo-text">
+        <h1>Innovara Consulting</h1>
+        <span>PRIVATE LIMITED</span>
     </div>
 </header>
 
 <section class="hero">
     <h2>Your Partner in Innovation and Growth</h2>
     <p>
-        Innovara Consulting delivers cutting-edge software development,
-        fintech solutions, and global IT consulting services connecting
-        the UK and India markets.
+        Delivering cutting-edge software development, fintech solutions,
+        and global IT consulting services connecting UK and India.
     </p>
 </section>
 
@@ -161,47 +178,33 @@
 
     <div class="service-grid">
         <div class="card">
-            <h4>Custom Software Development</h4>
-            <p>Scalable enterprise-grade applications tailored to your business.</p>
+            <h4>Custom Software</h4>
+            <p>Enterprise-grade scalable applications.</p>
         </div>
 
         <div class="card">
-            <h4>Offshore Development</h4>
-            <p>Cost-effective and high-quality development teams in India.</p>
+            <h4>Offshore Teams</h4>
+            <p>High-quality India-based development teams.</p>
         </div>
 
         <div class="card">
             <h4>FinTech Solutions</h4>
-            <p>Secure, compliant and innovative financial technology systems.</p>
+            <p>Secure financial platforms.</p>
         </div>
 
         <div class="card">
-            <h4>IT Consulting</h4>
-            <p>Strategic advisory to accelerate digital transformation.</p>
+            <h4>Consulting</h4>
+            <p>Digital transformation strategy.</p>
         </div>
     </div>
 </section>
 
 <footer>
-    <div>
-        <strong>Your Partner in Innovation and Growth</strong>
-    </div>
-
-    <div>
-        📞 <span class="highlight">+44 7857 857922 (UK)</span><br>
-        📞 <span class="highlight">+91 81417 83996 (India)</span>
-    </div>
-
-    <div>
-        ✉ info@innovaraconsulting.net
-    </div>
-
-    <div>
-        🌐 www.innovaraconsulting.net
-    </div>
+    <div>+44 7857 857922 (UK)</div>
+    <div>+91 81417 83996 (India)</div>
+    <div>info@innovaraconsulting.net</div>
+    <div>www.innovaraconsulting.net</div>
 </footer>
-
-<div class="bottom-left"></div>
 
 </body>
 </html>
