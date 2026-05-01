@@ -5,206 +5,302 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Innovara Consulting</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body {
+* {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #ffffff;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: white;
     overflow-x: hidden;
 }
 
-/* HEADER */
-header {
+/* NAVBAR */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 20px 60px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    z-index: 2;
-    position: relative;
+    background: rgba(10,10,15,0.6);
+    backdrop-filter: blur(10px);
+    z-index: 100;
 }
 
-.logo img {
-    height: 60px;
-    margin-right: 12px;
+nav img {
+    height: 50px;
 }
 
-.logo-text h1 {
-    margin: 0;
-    font-size: 26px;
+nav a {
+    margin-left: 30px;
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 500;
 }
 
-.logo-text span {
-    font-size: 12px;
-    letter-spacing: 2px;
-    color: #777;
+nav a:hover {
+    color: white;
 }
 
 /* HERO */
 .hero {
-    padding: 80px 40px;
-    max-width: 800px;
-    animation: fadeUp 1.2s ease forwards;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+    position: relative;
 }
 
-.hero h2 {
-    font-size: 42px;
-    margin-bottom: 20px;
+.hero-content {
+    max-width: 700px;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 1.2;
     background: linear-gradient(90deg, #7b2ff7, #ff2d95);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-    font-size: 18px;
-    color: #555;
+    margin: 20px 0;
+    font-size: 20px;
+    color: #bbb;
 }
 
-/* 🌊 WAVE SHAPES */
-.wave {
+.cta {
+    margin-top: 30px;
+}
+
+.cta button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #7b2ff7, #ff2d95);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.cta button.secondary {
+    background: transparent;
+    border: 1px solid #555;
+}
+
+/* ANIMATED GRADIENT BACKGROUND */
+.gradient-bg {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #ff00cc, transparent);
+    top: 10%;
+    right: 10%;
+    filter: blur(120px);
+    animation: float 8s ease-in-out infinite;
+}
+
+.gradient-bg2 {
     position: absolute;
     width: 500px;
-    height: 300px;
-    filter: blur(40px);
-    opacity: 0.7;
-    animation: floatWave 8s ease-in-out infinite;
+    height: 500px;
+    background: radial-gradient(circle, #3333ff, transparent);
+    bottom: 10%;
+    left: 10%;
+    filter: blur(120px);
+    animation: float 10s ease-in-out infinite;
 }
 
-/* TOP RIGHT */
-.wave.top {
-    top: -80px;
-    right: -100px;
-    background: linear-gradient(135deg, #ff00cc, #3333ff);
-    border-radius: 60% 40% 60% 40%;
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-40px); }
 }
 
-/* BOTTOM LEFT */
-.wave.bottom {
-    bottom: -80px;
-    left: -100px;
-    background: linear-gradient(135deg, #3333ff, #ff00cc);
-    border-radius: 40% 60% 40% 60%;
-    animation-delay: 2s;
+/* SECTION */
+.section {
+    padding: 100px 60px;
 }
 
-/* FLOAT ANIMATION */
-@keyframes floatWave {
-    0% {
-        transform: translateY(0px) scale(1);
-    }
-    50% {
-        transform: translateY(-20px) scale(1.05);
-    }
-    100% {
-        transform: translateY(0px) scale(1);
-    }
+.section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
 }
 
-/* FADE UP */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* SERVICES */
-.services {
-    padding: 60px 40px;
-}
-
-.service-grid {
+/* CARDS */
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 30px;
 }
 
 .card {
-    padding: 20px;
-    border-radius: 12px;
-    background: #f9f9f9;
+    background: rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.08);
+}
+
+/* CLIENT STRIP */
+.clients {
+    display: flex;
+    justify-content: space-around;
+    opacity: 0.6;
+    margin-top: 40px;
 }
 
 /* FOOTER */
 footer {
-    padding: 30px 40px;
-    border-top: 1px solid #eee;
+    padding: 60px;
+    background: #050507;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
-    font-size: 14px;
+    color: #aaa;
 }
 
 footer div {
-    flex: 1;
-    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+/* SCROLL ANIMATION */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 </style>
 </head>
 
 <body>
 
-<div class="wave top"></div>
-<div class="wave bottom"></div>
-
-<header>
-    <div class="logo">
-        <img src="logo.png">
+<!-- NAV -->
+<nav>
+    <img src="logo.png" alt="logo">
+    <div>
+        <a href="#">Services</a>
+        <a href="#">Solutions</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
     </div>
-    <div class="logo-text">
-        <h1>Innovara Consulting</h1>
-        <span>PRIVATE LIMITED</span>
-    </div>
-</header>
+</nav>
 
+<!-- HERO -->
 <section class="hero">
-    <h2>Your Partner in Innovation and Growth</h2>
-    <p>
-        Delivering cutting-edge software development, fintech solutions,
-        and global IT consulting services connecting UK and India.
-    </p>
+    <div class="hero-content">
+        <h1>Engineering Digital Growth Across UK & India</h1>
+        <p>
+            Innovara Consulting delivers world-class software development,
+            fintech solutions, and offshore capabilities for global enterprises.
+        </p>
+
+        <div class="cta">
+            <button>Get Started</button>
+            <button class="secondary">Learn More</button>
+        </div>
+    </div>
+
+    <div class="gradient-bg"></div>
+    <div class="gradient-bg2"></div>
 </section>
 
-<section class="services">
-    <h3>Our Services</h3>
+<!-- SERVICES -->
+<section class="section fade-up">
+    <h2>Our Capabilities</h2>
 
-    <div class="service-grid">
+    <div class="grid">
         <div class="card">
-            <h4>Custom Software</h4>
-            <p>Enterprise-grade scalable applications.</p>
+            <h3>Custom Software</h3>
+            <p>Enterprise-grade scalable systems built for growth.</p>
         </div>
 
         <div class="card">
-            <h4>Offshore Teams</h4>
-            <p>High-quality India-based development teams.</p>
+            <h3>Offshore Development</h3>
+            <p>High-performance engineering teams in India.</p>
         </div>
 
         <div class="card">
-            <h4>FinTech Solutions</h4>
-            <p>Secure financial platforms.</p>
+            <h3>FinTech Platforms</h3>
+            <p>Secure and compliant financial solutions.</p>
         </div>
 
         <div class="card">
-            <h4>Consulting</h4>
-            <p>Digital transformation strategy.</p>
+            <h3>Cloud & AI</h3>
+            <p>Modern architectures powered by AI and cloud.</p>
         </div>
     </div>
 </section>
 
+<!-- TRUST SECTION -->
+<section class="section fade-up">
+    <h2>Trusted by Global Businesses</h2>
+    <div class="clients">
+        <span>Enterprise Clients</span>
+        <span>Startups</span>
+        <span>FinTech Firms</span>
+        <span>SMEs</span>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section fade-up">
+    <h2>Let’s Build Something Exceptional</h2>
+    <button style="margin-top:20px;padding:15px 30px;border:none;background:#ff2d95;border-radius:8px;color:white;">
+        Contact Us
+    </button>
+</section>
+
+<!-- FOOTER -->
 <footer>
-    <div>+44 7857 857922 (UK)</div>
-    <div>+91 81417 83996 (India)</div>
-    <div>info@innovaraconsulting.net</div>
-    <div>www.innovaraconsulting.net</div>
+    <div>
+        <strong>Innovara Consulting</strong><br>
+        Your Partner in Innovation & Growth
+    </div>
+
+    <div>
+        +44 7857 857922 (UK)<br>
+        +91 81417 83996 (India)
+    </div>
+
+    <div>
+        info@innovaraconsulting.net<br>
+        www.innovaraconsulting.net
+    </div>
 </footer>
+
+<script>
+// Scroll animation
+const elements = document.querySelectorAll('.fade-up');
+
+window.addEventListener('scroll', () => {
+    elements.forEach(el => {
+        const pos = el.getBoundingClientRect().top;
+        if (pos < window.innerHeight - 100) {
+            el.classList.add('visible');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
