@@ -1,364 +1,1007 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Innovara Consulting</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<script>
-window.addEventListener("scroll", function () {
-    const navbar = document.getElementById("navbar");
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    if (!navbar) return;
-
-    if (window.scrollY > 50) {
-        navbar.classList.add("shrink");
-    } else {
-        navbar.classList.remove("shrink");
-    }
-});
-</script>
     <style>
+        :root {
+            --indigo: #283593;
+            --indigo-light: #eef2ff;
+            --indigo-soft: #f6f8ff;
+            --accent: #ff2d95;
+            --text: #172033;
+            --muted: #667085;
+            --border: #e6eaf2;
+            --white: #ffffff;
+            --shadow: 0 18px 45px rgba(40, 53, 147, 0.12);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #ffffff;
-            color: #222;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* NAVBAR */
-        nav {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    padding: 18px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--white);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid #eee;
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-    z-index: 100;
-    transition: all 0.35s ease;
-}
+        button {
+            font-family: inherit;
+        }
 
-/* LINKS */
-.nav-links a {
-    margin-left: 28px;
-    color: #555;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s;
-}
+        /* TOP NAV */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 64px;
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid rgba(230, 234, 242, 0.9);
+            backdrop-filter: blur(18px);
+            transition: padding 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
 
-.nav-links a:hover {
-    color: #7b2ff7;
-}
+            .navbar.shrink {
+                padding: 7px 64px;
+                background: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 10px 28px rgba(17, 24, 39, 0.08);
+            }
 
-/* LOGO CONTROL (IMPORTANT) */
-.logo img {
-    height: 110px;              /* BIG logo */
-    transition: all 0.35s ease;
-    animation: logoFloat 4s ease-in-out infinite;
-    filter: drop-shadow(0 6px 14px rgba(255, 45, 149, 0.25));
-}
-
-/* SHRINK STATE */
-#navbar.shrink {
-    padding: 8px 60px;         /* slim navbar */
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 6px 25px rgba(0,0,0,0.06);
-}
-
-/* shrink logo instead of navbar */
-#navbar.shrink .logo img {
-    height: 70px;
-    transform: translateY(-2px);
-}
-
-/* FLOAT ANIMATION */
-@keyframes logoFloat {
-    0%, 100% { transform: translateY(0px) scale(1); }
-    50% { transform: translateY(-4px) scale(1.02); }
-}
-        /* HERO */
-        .hero {
-            height: 100vh;
+        .nav-inner {
             display: flex;
             align-items: center;
-            padding: 0 60px;
-            position: relative;
-            background: linear-gradient(180deg, #ffffff 60%, #faf7ff);
+            justify-content: space-between;
+            max-width: 1220px;
+            margin: 0 auto;
+            gap: 32px;
         }
 
-        .hero-content {
-            max-width: 700px;
-            z-index: 2;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .brand-logo {
+            --logo-scale: 1;
+            width: 58px;
+            height: 58px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 18px rgba(40, 53, 147, 0.14));
+            transform-origin: center;
+            animation: logoFloat 4.5s ease-in-out infinite;
+            transition: width 0.3s ease, height 0.3s ease, filter 0.3s ease;
+            will-change: transform;
+        }
+
+        .brand:hover .brand-logo {
+            --logo-scale: 1.18;
+            filter: drop-shadow(0 16px 26px rgba(40, 53, 147, 0.24));
+        }
+
+        .navbar.shrink .brand-logo {
+            width: 52px;
+            height: 52px;
+            filter: drop-shadow(0 6px 12px rgba(40, 53, 147, 0.12));
+        }
+
+        .navbar.shrink .brand:hover .brand-logo {
+            --logo-scale: 1.22;
+            filter: drop-shadow(0 12px 20px rgba(40, 53, 147, 0.2));
+        }
+
+        .brand-mark {
+            width: 1px;
+            height: 42px;
+            background: linear-gradient(180deg, transparent, rgba(40, 53, 147, 0.35), transparent);
+            transition: height 0.3s ease;
+        }
+
+        .navbar.shrink .brand-mark {
+            height: 38px;
+        }
+
+        .brand-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            white-space: nowrap;
+        }
+
+        .brand-title-main {
+            font-size: 18px;
+            letter-spacing: 0.06em;
+            color: var(--indigo);
+            transition: font-size 0.3s ease, letter-spacing 0.3s ease;
+        }
+
+        .brand-title-sub {
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            color: #5c6bc0;
+            transition: font-size 0.3s ease, letter-spacing 0.3s ease;
+        }
+
+        .navbar.shrink .brand-title-main {
+            font-size: 20px;
+            letter-spacing: 0.07em;
+        }
+
+        .navbar.shrink .brand-title-sub {
+            font-size: 11px;
+            letter-spacing: 0.26em;
+        }
+
+        .brand-tagline {
+            max-width: 220px;
+            margin-top: 9px;
+            padding-top: 7px;
+            border-top: 1px solid rgba(40, 53, 147, 0.18);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            white-space: nowrap;
+            text-transform: none;
+            transition: opacity 0.3s ease, transform 0.3s ease, font-size 0.3s ease, margin-top 0.3s ease;
+        }
+
+        .navbar.shrink .brand-tagline {
+            margin-top: 6px;
+            font-size: 9px;
+            opacity: 0.82;
+            transform: translateY(-1px);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+            .nav-links a {
+                position: relative;
+                font-size: 15px;
+                font-weight: 600;
+                color: #344054;
+                transition: color 0.25s ease;
+            }
+
+                .nav-links a::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: -8px;
+                    width: 0;
+                    height: 2px;
+                    background: linear-gradient(90deg, var(--indigo), var(--accent));
+                    transition: width 0.25s ease;
+                }
+
+                .nav-links a:hover {
+                    color: var(--indigo);
+                }
+
+                    .nav-links a:hover::after {
+                        width: 100%;
+                    }
+
+        /* HERO / LETTERHEAD-INSPIRED LAYOUT */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            padding: 180px 64px 96px;
+            overflow: hidden;
+            background: radial-gradient(circle at 85% 18%, rgba(40, 53, 147, 0.12), transparent 28%), radial-gradient(circle at 12% 76%, rgba(255, 45, 149, 0.09), transparent 30%), linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+        }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 116px;
+                right: -140px;
+                width: 520px;
+                height: 520px;
+                border-radius: 50%;
+                border: 80px solid rgba(40, 53, 147, 0.045);
+            }
+
+            .hero::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 6px;
+                background: linear-gradient(90deg, var(--indigo), #5c6bc0, var(--accent));
+            }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1220px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+            align-items: center;
+            gap: 64px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            margin-bottom: 22px;
+            border: 1px solid #dfe5ff;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--indigo);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 5px rgba(255, 45, 149, 0.12);
         }
 
         .hero h1 {
-            font-size: 56px;
-            line-height: 1.2;
-            background: linear-gradient(90deg, #6a11cb, #ff2d95);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            max-width: 760px;
+            font-size: clamp(42px, 6vw, 72px);
+            line-height: 1.06;
+            letter-spacing: -0.055em;
+            color: #101828;
         }
 
-        .hero p {
-            margin: 20px 0;
-            font-size: 20px;
-            color: #555;
+            .hero h1 span {
+                background: linear-gradient(90deg, var(--indigo), var(--accent));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+        .hero-text {
+            max-width: 650px;
+            margin-top: 24px;
+            font-size: 19px;
+            color: var(--muted);
         }
 
-        /* CTA */
-        .cta button {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(90deg, #6a11cb, #ff2d95);
-            color: white;
-            font-size: 16px;
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 34px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 13px 24px;
+            border-radius: 12px;
+            border: 1px solid transparent;
             cursor: pointer;
-            margin-right: 15px;
+            font-weight: 700;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
         }
 
-        .cta button.secondary {
-            background: white;
-            border: 1px solid #ddd;
-            color: #555;
+        .btn-primary {
+            color: var(--white);
+            background: linear-gradient(90deg, var(--indigo), #5c6bc0);
+            box-shadow: 0 14px 28px rgba(40, 53, 147, 0.22);
         }
 
-        /* SOFT GRADIENT BLOBS */
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 10s ease-in-out infinite;
+        .btn-secondary {
+            color: var(--indigo);
+            background: var(--white);
+            border-color: #dfe5ff;
         }
 
-        .blob1 {
-            width: 400px;
-            height: 400px;
-            background: #ff2d95;
-            top: 10%;
-            right: 5%;
+        .btn:hover {
+            transform: translateY(-2px);
         }
 
-        .blob2 {
-            width: 350px;
-            height: 350px;
-            background: #6a11cb;
-            bottom: 10%;
-            left: 5%;
-            animation-delay: 3s;
+        .hero-card {
+            position: relative;
+            padding: 34px;
+            border: 1px solid rgba(230, 234, 242, 0.9);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.82);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
+            .hero-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                padding: 1px;
+                background: linear-gradient(135deg, rgba(40, 53, 147, 0.22), rgba(255, 45, 149, 0.14));
+                mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+                mask-composite: exclude;
+                pointer-events: none;
             }
 
-            50% {
-                transform: translateY(-30px);
+            .hero-card h2 {
+                font-size: 24px;
+                color: var(--indigo);
+                margin-bottom: 14px;
             }
+
+            .hero-card p {
+                color: var(--muted);
+            }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 28px;
         }
 
-        /* SECTION */
+        .metric {
+            padding: 18px;
+            border-radius: 18px;
+            background: var(--indigo-soft);
+            border: 1px solid #e7ebff;
+        }
+
+            .metric strong {
+                display: block;
+                color: var(--indigo);
+                font-size: 26px;
+                line-height: 1;
+            }
+
+            .metric span {
+                display: block;
+                margin-top: 8px;
+                color: var(--muted);
+                font-size: 13px;
+                font-weight: 600;
+            }
+
+        /* SECTIONS */
+        section {
+            scroll-margin-top: 120px;
+        }
+
         .section {
-            padding: 100px 60px;
+            padding: 96px 64px;
+        }
+
+        .section-inner {
+            max-width: 1220px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin-bottom: 42px;
+        }
+
+        .section-kicker {
+            margin-bottom: 10px;
+            color: var(--indigo);
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
         }
 
         .section h2 {
-            font-size: 34px;
-            margin-bottom: 40px;
-            color: #111;
+            font-size: clamp(32px, 4vw, 46px);
+            line-height: 1.12;
+            letter-spacing: -0.035em;
+            color: #101828;
         }
 
-        /* CARDS */
+        .section-heading p {
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
         }
 
         .card {
-            background: white;
-            padding: 30px;
+            padding: 28px;
+            border-radius: 22px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 30px rgba(17, 24, 39, 0.04);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-6px);
+                border-color: #cfd7ff;
+                box-shadow: var(--shadow);
+            }
+
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            margin-bottom: 20px;
+            border-radius: 14px;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--indigo), #667eea);
+            font-weight: 800;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 19px;
+            color: #101828;
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .solutions {
+            background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+        }
+
+        .solution-panel {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 42px;
+            align-items: center;
+            padding: 42px;
+            border-radius: 28px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .solution-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .solution-item {
+            padding: 18px 20px;
             border-radius: 16px;
-            border: 1px solid #eee;
-            transition: 0.3s;
+            background: var(--indigo-soft);
+            border: 1px solid #e7ebff;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(106, 17, 203, 0.1);
+            .solution-item strong {
+                display: block;
+                color: var(--indigo);
+                margin-bottom: 4px;
+            }
+
+            .solution-item span {
+                color: var(--muted);
+                font-size: 15px;
+            }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 48px;
+            align-items: start;
         }
 
-        /* TRUST */
-        .clients {
-            display: flex;
-            justify-content: space-around;
-            color: #777;
+        .about-box {
+            padding: 34px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, var(--indigo), #5c6bc0);
+            color: var(--white);
+            box-shadow: var(--shadow);
         }
 
-        /* CTA SECTION */
-        .cta-section {
-            text-align: center;
-            background: linear-gradient(135deg, #f7f0ff, #ffe6f3);
-            border-radius: 20px;
-            margin: 60px;
-            padding: 60px;
+            .about-box h3 {
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+
+            .about-box p {
+                color: rgba(255, 255, 255, 0.82);
+            }
+
+        .about-text p {
+            margin-bottom: 18px;
+            color: var(--muted);
+            font-size: 17px;
         }
 
-        /* FOOTER */
+        .contact {
+            background: var(--indigo-soft);
+        }
+
+        .contact-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            padding: 42px;
+            border-radius: 28px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-line {
+            margin-top: 18px;
+            color: var(--muted);
+        }
+
+            .contact-line strong {
+                display: block;
+                color: var(--text);
+                margin-bottom: 4px;
+            }
+
+        .contact-form {
+            display: grid;
+            gap: 14px;
+        }
+
+            .contact-form input,
+            .contact-form textarea {
+                width: 100%;
+                padding: 14px 16px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: #fbfcff;
+                font: inherit;
+                color: var(--text);
+                outline: none;
+            }
+
+            .contact-form textarea {
+                min-height: 120px;
+                resize: vertical;
+            }
+
+                .contact-form input:focus,
+                .contact-form textarea:focus {
+                    border-color: #aebcff;
+                    box-shadow: 0 0 0 4px rgba(40, 53, 147, 0.08);
+                }
+
         footer {
-            padding: 60px;
-            background: #fafafa;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            color: #666;
-            border-top: 1px solid #eee;
+            padding: 34px 64px;
+            border-top: 1px solid var(--border);
+            background: var(--white);
+            color: var(--muted);
         }
 
-        /* SCROLL ANIMATION */
+        .footer-inner {
+            max-width: 1220px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+
         .fade-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: 0.8s;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+            .fade-up.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        @media (max-width: 980px) {
+            .navbar,
+            .navbar.shrink {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .nav-inner {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                gap: 16px;
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+
+            .hero {
+                padding: 220px 24px 72px;
+            }
+
+            .hero-inner,
+            .solution-panel,
+            .about-content,
+            .contact-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 76px 24px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            footer {
+                padding: 28px 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .brand-logo {
+                width: 58px;
+                height: 58px;
+            }
+
+            .brand-title {
+                font-size: 18px;
+            }
+
+            .brand-tagline {
+                max-width: 220px;
+                white-space: normal;
+                font-size: 9px;
+                letter-spacing: 0.06em;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero {
+                padding-top: 230px;
+            }
+
+            .hero-actions,
+            .metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .solution-panel,
+            .contact-panel {
+                padding: 28px;
+            }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0) scale(var(--logo-scale));
+            }
+
+            50% {
+                transform: translateY(-5px) scale(var(--logo-scale));
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .brand-logo {
+                animation: none;
+                transform: scale(var(--logo-scale));
+            }
         }
     </style>
 </head>
 
 <body>
+    <nav id="navbar" class="navbar">
+        <div class="nav-inner">
+            <a class="brand" href="#home" aria-label="Innovara Consulting home">
+                <img class="brand-logo" src="logo.png" alt="Innovara Consulting logo">
 
-    <!-- NAV -->
-    <nav id="navbar">
-    <div class="logo">
-        <img src="logo.png" alt="Innovara Logo">
-    </div>
+                <span class="brand-mark" aria-hidden="true"></span>
 
-    <div class="nav-links">
-        <a href="#">Services</a>
-        <a href="#">Solutions</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </div>
-</nav>
+                <span class="brand-copy">
+                    <span class="brand-title">
+                        <span class="brand-title-main">Innovara</span>
+                        <span class="brand-title-sub">Consulting</span>
+                    </span>
+                    <span class="brand-tagline">Seamless Solutions, Experienced Expertise</span>
+                </span>
+            </a>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Driving Innovation Across UK & India</h1>
-            <p>
-                Delivering world-class software development, fintech platforms,
-                and offshore capabilities tailored for modern businesses.
-            </p>
-
-            <div class="cta">
-                <button>Get Started</button>
-                <button class="secondary">Learn More</button>
+            <div class="nav-links" aria-label="Primary navigation">
+                <a href="#services">Services</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
+    </nav>
 
-        <div class="blob blob1"></div>
-        <div class="blob blob2"></div>
-    </section>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-inner">
+                <div class="hero-copy fade-up">
+                    <div class="eyebrow">
+                        <span class="eyebrow-dot"></span>
+                        UK & India Technology Consulting
+                    </div>
 
-    <!-- SERVICES -->
-    <section class="section fade-up">
-        <h2>Our Capabilities</h2>
+                    <h1>
+                        Practical technology solutions for
+                        <span>modern businesses.</span>
+                    </h1>
 
-        <div class="grid">
-            <div class="card">
-                <h3>Custom Software</h3>
-                <p>Scalable, enterprise-grade solutions.</p>
+                    <p class="hero-text">
+                        Innovara Consulting helps organizations design, build, and scale reliable software,
+                        cloud platforms, fintech products, and offshore engineering capabilities.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#contact">Start a Conversation</a>
+                        <a class="btn btn-secondary" href="#services">Explore Services</a>
+                    </div>
+                </div>
+
+                <aside class="hero-card fade-up">
+                    <h2>Professional delivery, clear outcomes.</h2>
+                    <p>
+                        A structured consulting approach focused on measurable impact,
+                        high-quality engineering, and long-term operational confidence.
+                    </p>
+
+                    <div class="metrics">
+                        <div class="metric">
+                            <strong>Global</strong>
+                            <span>UK & India reach</span>
+                        </div>
+                        <div class="metric">
+                            <strong>Agile</strong>
+                            <span>Flexible delivery</span>
+                        </div>
+                        <div class="metric">
+                            <strong>Secure</strong>
+                            <span>Built-in quality</span>
+                        </div>
+                        <div class="metric">
+                            <strong>Scalable</strong>
+                            <span>Growth-ready systems</span>
+                        </div>
+                    </div>
+                </aside>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>Offshore Development</h3>
-                <p>High-quality engineering teams in India.</p>
+        <section id="services" class="section">
+            <div class="section-inner">
+                <div class="section-heading fade-up">
+                    <div class="section-kicker">Services</div>
+                    <h2>End-to-end technology services for digital growth.</h2>
+                    <p>
+                        From strategy and architecture to delivery and support, services are designed
+                        to help teams move faster with confidence.
+                    </p>
+                </div>
+
+                <div class="grid">
+                    <article class="card fade-up">
+                        <div class="icon">01</div>
+                        <h3>Custom Software</h3>
+                        <p>Web, mobile, API, and enterprise-grade applications built for performance and maintainability.</p>
+                    </article>
+
+                    <article class="card fade-up">
+                        <div class="icon">02</div>
+                        <h3>Offshore Development</h3>
+                        <p>Dedicated engineering capability in India to extend delivery capacity and reduce execution risk.</p>
+                    </article>
+
+                    <article class="card fade-up">
+                        <div class="icon">03</div>
+                        <h3>Cloud & DevOps</h3>
+                        <p>Cloud migration, automation, CI/CD, infrastructure modernization, and operational readiness.</p>
+                    </article>
+
+                    <article class="card fade-up">
+                        <div class="icon">04</div>
+                        <h3>AI & Automation</h3>
+                        <p>Practical AI, workflow automation, data-driven products, and intelligent business enablement.</p>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>FinTech Solutions</h3>
-                <p>Secure, compliant platforms.</p>
+        <section id="solutions" class="section solutions">
+            <div class="section-inner">
+                <div class="solution-panel fade-up">
+                    <div class="section-heading" style="margin-bottom:0;">
+                        <div class="section-kicker">Solutions</div>
+                        <h2>Reliable solutions aligned to business outcomes.</h2>
+                        <p>
+                            Innovara Consulting delivers solution patterns that balance speed,
+                            security, scalability, and cost effectiveness.
+                        </p>
+                    </div>
+
+                    <div class="solution-list">
+                        <div class="solution-item">
+                            <strong>FinTech Platforms</strong>
+                            <span>Secure, compliant, and resilient financial technology systems.</span>
+                        </div>
+
+                        <div class="solution-item">
+                            <strong>Business Portals</strong>
+                            <span>Customer, partner, and employee portals that improve engagement and efficiency.</span>
+                        </div>
+
+                        <div class="solution-item">
+                            <strong>Data & Integration</strong>
+                            <span>Connected systems, APIs, reporting layers, and integration workflows.</span>
+                        </div>
+
+                        <div class="solution-item">
+                            <strong>Modernization</strong>
+                            <span>Upgrade legacy systems into maintainable, cloud-ready platforms.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="card">
-                <h3>Cloud & AI</h3>
-                <p>Modern architecture and automation.</p>
+        <section id="about" class="section">
+            <div class="section-inner">
+                <div class="about-content">
+                    <div class="about-box fade-up">
+                        <h3>Built on experience, delivered with clarity.</h3>
+                        <p>
+                            A consulting partner focused on seamless execution, practical expertise,
+                            and dependable technology delivery.
+                        </p>
+                    </div>
+
+                    <div class="about-text fade-up">
+                        <div class="section-kicker">About</div>
+                        <h2>Helping businesses turn technology goals into working solutions.</h2>
+                        <p>
+                            Innovara Consulting works with organizations that need dependable engineering,
+                            technical direction, and implementation support across software, cloud, automation,
+                            fintech, and offshore development.
+                        </p>
+                        <p>
+                            The approach is collaborative and outcome-focused: understand the business need,
+                            define a practical roadmap, build with quality, and support long-term growth.
+                        </p>
+                        <a class="btn btn-secondary" href="#contact">Contact Innovara</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- TRUST -->
-    <section class="section fade-up">
-        <h2>Trusted by Businesses</h2>
-        <div class="clients">
-            <span>Enterprises</span>
-            <span>Startups</span>
-            <span>FinTech Firms</span>
-            <span>SMEs</span>
-        </div>
-    </section>
+        <section id="contact" class="section contact">
+            <div class="section-inner">
+                <div class="contact-panel fade-up">
+                    <div>
+                        <div class="section-kicker">Contact</div>
+                        <h2>Let’s build something exceptional.</h2>
+                        <p class="contact-line">
+                            Share your requirement and start a conversation about the right solution for your business.
+                        </p>
 
-    <!-- CTA -->
-    <section class="cta-section fade-up">
-        <h2>Let’s Build Something Exceptional</h2>
-        <button style="margin-top:20px;padding:15px 30px;border:none;background:#ff2d95;border-radius:8px;color:white;">
-            Contact Us
-        </button>
-    </section>
+                        <div class="contact-line">
+                            <strong>Email</strong>
+                            info@innovaraconsulting.net
+                        </div>
 
-    <!-- FOOTER -->
+                        <div class="contact-line">
+                            <strong>Website</strong>
+                            www.innovaraconsulting.net
+                        </div>
+
+                        <div class="contact-line">
+                            <strong>Phone</strong>
+                            +44 7857 857922 (UK)<br>
+                            +91 81417 83996 (India)
+                        </div>
+                    </div>
+
+                    <form class="contact-form">
+                        <input type="text" name="name" placeholder="Your name" aria-label="Your name">
+                        <input type="email" name="email" placeholder="Your email" aria-label="Your email">
+                        <input type="text" name="subject" placeholder="Subject" aria-label="Subject">
+                        <textarea name="message" placeholder="Tell us about your requirement" aria-label="Message"></textarea>
+                        <button class="btn btn-primary" type="button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <div>
-            <strong>Innovara Consulting</strong><br>
-            Your Partner in Innovation & Growth
-        </div>
-
-        <div>
-            +44 7857 857922 (UK)<br>
-            +91 81417 83996 (India)
-        </div>
-
-        <div>
-            info@innovaraconsulting.net<br>
-            www.innovaraconsulting.net
+        <div class="footer-inner">
+            <div>
+                <strong>Innovara Consulting</strong> — Seamless Solutions, Experienced Expertise
+            </div>
+            <div>
+                © 2026 Innovara Consulting. All rights reserved.
+            </div>
         </div>
     </footer>
 
     <script>
-        const elements = document.querySelectorAll('.fade-up');
+        const navbar = document.getElementById("navbar");
 
-        window.addEventListener('scroll', () => {
-            elements.forEach(el => {
-                const pos = el.getBoundingClientRect().top;
-                if (pos < window.innerHeight - 100) {
-                    el.classList.add('visible');
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add("shrink");
+            } else {
+                navbar.classList.remove("shrink");
+            }
+        });
+
+        const animatedElements = document.querySelectorAll(".fade-up");
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
                 }
             });
+        }, {
+            threshold: 0.15
         });
+
+        animatedElements.forEach((element) => observer.observe(element));
     </script>
-
 </body>
-
 </html>
