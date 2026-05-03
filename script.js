@@ -6,6 +6,18 @@
     const themeToggleIcon = themeToggle.querySelector(".theme-toggle-icon");
     const themeToggleText = themeToggle.querySelector(".theme-toggle-text");
 
+    const setCookie = (name, value, days) => {
+        const expires = new Date(Date.now() + days * 24 * 60 * 60 * 1000).toUTCString();
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+    };
+
+    const getCookie = (name) => {
+        return document.cookie
+            .split("; ")
+            .find((cookie) => cookie.startsWith(`${name}=`))
+            ?.split("=")[1];
+    };
+
         const applyTheme = (theme) => {
             const isDark = theme === "dark";
 
@@ -15,10 +27,10 @@
     themeToggleIcon.textContent = isDark ? "☾" : "☀";
     themeToggleText.textContent = isDark ? "Dark" : "Light";
 
-    localStorage.setItem("innovara-theme", theme);
+    setCookie("innovara-theme", theme, 365);
         };
 
-    const savedTheme = localStorage.getItem("innovara-theme");
+    const savedTheme = decodeURIComponent(getCookie("innovara-theme") || "");
     const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
     applyTheme(savedTheme || preferredTheme);
