@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/CopilotSnapshots
+/.vs/globaldevelopers.github.io/CopilotIndices/18.6.39603.9996
+/.vs/globaldevelopers.github.io.slnx/config/applicationhost.config
+*.vsidx
+/.vs/globaldevelopers.github.io.slnx/v18
+*.sqlite
+/.vs/slnx.sqlite-journal
